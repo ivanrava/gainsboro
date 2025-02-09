@@ -32,7 +32,7 @@ const filter = ref<string>("")
 
 const filteredList = computed(() => {
   return colornames
-    .filter((c: Color) => c.name.toLowerCase().includes(filter.value))
+    .filter((c: Color) => c.name.toLowerCase().includes(filter.value.toLowerCase()))
     .sort((a: Color, b: Color) => hexToHSL(a.hex).h! - hexToHSL(b.hex).h!)
 })
 </script>
