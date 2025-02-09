@@ -35,13 +35,20 @@ const filteredList = computed(() => {
     .filter((c: Color) => c.name.toLowerCase().includes(filter.value.toLowerCase()))
     .sort((a: Color, b: Color) => hexToHSL(a.hex).h! - hexToHSL(b.hex).h!)
 })
+
+const savedColors = ref<Color[]>([])
 </script>
 
 <template>
   <main>
-    <input class="w-full h-12 p-4 text-3xl mb-4 focus:outline-0" placeholder="Filter" v-model="filter" />
+    <input class="w-full h-12 p-4 text-3xl pb-5 focus:outline-0 sticky top-0 bg-slate-300 dark:bg-stone-900 dark:text-white/90 shadow-xl" placeholder="Filter" v-model="filter" />
     <div class="flex flex-wrap justify-center">
-      <ColorSquare v-for="color in filteredList" :color="color" :key="color.name" />
+      <ColorSquare v-for="color in filteredList" :color="color" :key="color.name" @click="savedColors.push(color)" class="cursor-pointer" />
     </div>
+    <aside class="bg-slate-300 p-4 fixed bottom-0 w-full shadow-xl dark:bg-stone-900">
+      <div class="flex flex-wrap">
+        <ColorSquare v-for="color in savedColors" :color="color" :key="color.name" />
+      </div>
+    </aside>
   </main>
 </template>
