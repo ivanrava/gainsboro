@@ -23,7 +23,7 @@ function hexToHSL(hex: string) {
             case g: h = (b - r) / d + 2; break;
             case b: h = (r - g) / d + 4; break;
         }
-        h *= 60;
+        h = h! * 60;
     }
     return { h, s, l };
 }
