@@ -17,7 +17,7 @@ const isDarkColor = computed(() => {
 </script>
 
 <template>
-  <article class="w-24 h-24 p-2" :style="{backgroundColor: color.hex}" :class="{'text-white': isDarkColor}">
+  <article class="w-64 h-32 p-2 text-3xl font-light" :style="{backgroundColor: color.hex}" :class="{'text-white/60': isDarkColor, 'text-black/60': !isDarkColor}">
     {{ color.name }}
   </article>
 </template>
